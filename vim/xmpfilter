@@ -1,0 +1,4 @@
+nnoremap <leader>r :%!xmpfilter -a<cr>
+nnoremap <leader>s :%!xmpfilter -s<cr>
+
+" vim: set filetype=vim :

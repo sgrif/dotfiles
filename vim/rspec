@@ -1,0 +1,82 @@
+" rspec mappings
+map <leader>t :call RunSpecFile()<CR>
+map <leader>T :call RunNearestSpec()<CR>
+" map <leader>s :call RunNearestSpec()<CR>
+map <leader>l :call RunLastSpec()<CR>
+map <leader>a :call RunAllSpecs()<CR>
+map <leader>c :w\|:!~/bin/features<cr>
+map <leader>j :!RAILS_ENV=test bundle exec teaspoon<CR>
+
+" spec support
+function! GuessSpecCommand()
+  if exists("t:last_spec_file")
+    if match(t:last_spec_file, '\.feature$') != -1
+      return "~/bin/features"
+    else
+      return "~/bin/test"
+    endif
+  else
+    return "~/bin/test"
+  endif
+endfunction
+
+function! RunSpecFile()
+  if InSpecFile()
+    let t:last_spec_file = @%
+    let t:last_spec_file_command = GuessSpecCommand() . " " . t:last_spec_file
+  endif
+
+  call RunLastSpecFile()
+endfunction
+
+function! RunNearestSpec()
+  if InSpecFile()
+    let t:last_spec_file = @%
+    let t:last_nearest_spec_command = GuessSpecCommand() . " " . t:last_spec_file . ":" . line(".")
+  endif
+
+  call RunLastNearestSpec()
+endfunction
+
+function! RunLastSpec()
+  call RunSpecs()
+endfunction
+
+function! InSpecFile()
+  return match(expand("%"), '\(.feature\|_spec.rb\|_spec.coffee\|Specs.scala\)$') != -1
+endfunction
+
+function! RunAllSpecs()
+  if exists("t:last_spec_file")
+    unlet t:last_spec_file
+  endif
+
+  call SetLastSpecCommand(GuessSpecCommand())
+  call RunSpecs()
+endfunction
+
+function! RunLastNearestSpec()
+  if exists("t:last_nearest_spec_command")
+    call SetLastSpecCommand(t:last_nearest_spec_command)
+    call RunSpecs()
+  endif
+endfunction
+
+function! RunLastSpecFile()
+  if exists("t:last_spec_file_command")
+    call SetLastSpecCommand(t:last_spec_file_command)
+    call RunSpecs()
+  endif
+endfunction
+
+function! RunSpecs()
+  if exists("t:last_spec_command")
+    execute ":w\|!clear && echo " . t:last_spec_command . " && echo && " . t:last_spec_command
+  endif
+endfunction
+
+function! SetLastSpecCommand(command)
+  let t:last_spec_command = a:command
+endfunction
+
+" vim: set filetype=vim :
