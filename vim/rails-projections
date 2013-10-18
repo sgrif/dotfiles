@@ -1,0 +1,24 @@
+let g:rails_gem_projections = {
+  \ "backbone-on-rails": {
+  \   "app/assets/javascripts/models/*.js.coffee": {
+  \     "command": "jmodel",
+  \     "template": "class App.Models.%S extends Backbone.Model",
+  \     "alternate": "app/assets/javascripts/collections/%p.js.coffee"
+  \   },
+  \   "app/assets/javascripts/views/*.js.coffee": {
+  \     "command": "jview",
+  \     "template": "class App.Views.%S extends Backbone.View\n  template: JST['%s']\n\n  render: ->\n    @$el.html(@template())\n    this"
+  \   },
+  \   "app/assets/javascripts/collections/*.js.coffee": {
+  \     "command": "jcollection",
+  \     "template": "class App.Collections.%S extends Backbone.Collection\n  url: '/%s'\n\n  model: App.Models.%S",
+  \     "alternate": "app/assets/javascripts/models/%i.js.coffee"
+  \   },
+  \   "app/assets/javascripts/routers/*.js.coffee": {
+  \     "command": "jrouter",
+  \     "template": "class App.Routers.%S extends Backbone.Router"
+  \   },
+  \   "app/assets/templates/*.jst.eco": {
+  \     "command": "template"
+  \   }
+  \ }}
