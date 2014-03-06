@@ -1,0 +1,66 @@
+#!/bin/bash
+set -e
+
+need_rails=1
+
+if [ $# -gt 0 ]; then # we have args
+  filename=$1
+  # Remove trailing line numbers from filename, e.g. spec/my_spec.rb:33
+  grep_filename=`echo $1 | sed 's/:.*$//g'`
+
+  (set +e; grep -r '\bspec_helper\b' $grep_filename) > /dev/null
+  if [ $? -eq 1 ]; then # no match; we have a stand-alone spec
+    need_rails=''
+  fi
+else # we have no args
+  filename='spec'
+fi
+
+command='rspec'
+using_zeus=''
+
+if [ -S .zeus.sock ]; then
+  using_zeus=1
+fi
+
+if [ $need_rails ]; then
+  command="bundle exec $command"
+fi
+
+jasmine_spec=''
+if [[ $filename && ${grep_filename: -7} == ".coffee" ]]; then
+  jasmine_spec=1
+fi
+
+scala_spec=''
+if [[ $filename && ${grep_filename: -6} == ".scala" ]]; then
+  scala_spec=1
+  scala_class=`grep "class " $grep_filename | sed "s/^class \\([^ ]*\\).*$/\\1/"`
+
+  (set +e; grep -r '^package ' $grep_filename) > /dev/null
+  if [ $? -eq 1 ]; then
+    scala_package=''
+  else
+    scala_package=`grep "package" $grep_filename | sed "s/^package \\(.*\\)$/\\1/"`
+  fi
+
+  if [ $scala_package ]; then
+    scala_class="$scala_package.$scala_class"
+  fi
+fi
+
+if [[ $need_rails && $using_zeus ]]; then
+  if [ $filename ]; then
+    zeus rspec $filename
+  else
+    zeus rake
+  fi
+else
+  if [ $jasmine_spec ]; then
+    RAILS_ENV=test bundle exec teaspoon $filename
+  else if [ $scala_spec ]; then
+    sbt "test-only $scala_class"
+  else
+    $HOME/.bin/run_with_env_file "RAILS_ENV=test $command $filename --color"
+  fi; fi
+fi

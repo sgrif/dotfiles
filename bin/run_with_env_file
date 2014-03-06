@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+if [ -e ".env.test" ]; then
+  eval $(echo "$(cat .env.test) $1" | tr '\n' ' ')
+elif [ -e ".env" ]; then
+  eval $(echo "$(cat .env) $1" | tr '\n' ' ')
+else
+  eval $1
+fi
