@@ -61,3 +61,7 @@ export PATH=".git/safe/../../bin:$PATH"
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+export PATH="$HOME/.bin:$PATH"
+
+# added by travis gem
+[ -f /Users/sean/.travis/travis.sh ] && source /Users/sean/.travis/travis.sh

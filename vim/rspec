@@ -11,12 +11,12 @@ map <leader>j :!RAILS_ENV=test bundle exec teaspoon<CR>
 function! GuessSpecCommand()
   if exists("t:last_spec_file")
     if match(t:last_spec_file, '\.feature$') != -1
-      return "~/bin/features"
+      return "~/.bin/features"
     else
-      return "~/bin/test"
+      return "~/.bin/test"
     endif
   else
-    return "~/bin/test"
+    return "~/.bin/test"
   endif
 endfunction
 
