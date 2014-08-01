@@ -1,0 +1,26 @@
+let mapleader = ","
+set background=dark
+color solarized
+
+inoremap kj <Esc>
+
+nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
+nmap <leader>es :sp <C-R>=expand('%:h').'/'<cr>
+nmap <leader>ev :vsp <C-R>=expand('%:h').'/'<cr>
+nmap <leader>et :tabe <C-R>=expand('%:h').'/'<cr>
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+source ~/.vim/rspec
+source ~/.vim/rails-projections
+
+set nosplitbelow
+set nosplitright
+
+inoremap <Right> →
+inoremap <S-Right> ⇒
+
+
+set number
+set mouse+=a
+
+let g:haddock_browser = "/usr/bin/open"

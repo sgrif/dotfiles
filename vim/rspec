@@ -43,7 +43,7 @@ function! RunLastSpec()
 endfunction
 
 function! InSpecFile()
-  return match(expand("%"), '\(.feature\|_spec.rb\|_spec.coffee\|Specs.scala\)$') != -1
+  return match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\|_spec.coffee\|Specs.scala\)$') != -1
 endfunction
 
 function! RunAllSpecs()

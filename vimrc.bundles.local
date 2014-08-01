@@ -1,0 +1,11 @@
+Bundle "altercation/vim-colors-solarized"
+Bundle "tpope/vim-commentary"
+Bundle "tpope/vim-repeat"
+Bundle "rking/ag.vim"
+Bundle "derekwyatt/vim-scala"
+Bundle "lukerandall/haskellmode-vim"
+Bundle "kana/vim-filetype-haskell"
+Bundle 'wting/rust.vim'
+Bundle 'godlygeek/tabular'
+Bundle "slim-template/vim-slim"
+Bundle "tikhomirov/vim-glsl"

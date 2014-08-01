@@ -1,0 +1,2 @@
+export PATH="$HOME/.cabal/bin:/usr/local/bin:$PATH"
+export ANDROID_HOME="/usr/local/Cellar/android-sdk/22.6"

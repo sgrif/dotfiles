@@ -32,11 +32,11 @@ let g:rails_projections = {
   \ "app/assets/javascripts/services/*.js.coffee": {
   \   "command": "aservice",
   \   "alternate": "spec/javascripts/services/%s_spec.coffee",
-  \   "template": "#= require ../locus_control_services\nclass %S\n\nangular.module('locusControl.services')\n  .service('%S', [%S])"
+  \   "template": "#= require ../locus_control_services\nfactory = ->\n  class %S\n\nangular.module(\"locusControl.services\")\n  .factory(\"%S\", [factory])"
   \ },
   \ "spec/javascripts/services/*_spec.coffee": {
   \   "command": "asspec",
-  \   "template": "#= require services/%s\ndescribe '%S', ->\n  [%S] = []\n\n  beforeEach module 'locusControl.services', ($provide) ->\n    null\n\n  beforeEach inject (_%S_) ->\n    %S = _%S_",
+  \   "template": "#= require services/%s\ndescribe \"%S\", ->\n  [%S] = []\n\n  beforeEach ->\n    module(\"locusControl.services\")\n\n    inject (_%S_) ->\n      %S = _%S_",
   \   "alternate": "app/assets/javascripts/services/%s.js.coffee"
   \ },
   \ "app/assets/javascripts/controllers/*_ctrl.js.coffee": {
@@ -49,11 +49,11 @@ let g:rails_projections = {
   \ },
   \ "app/assets/javascripts/directives/*.js.coffee": {
   \   "command": "adirective",
-  \   "template": "#= require ../locus_control_directives\n%S = ->\n  restrict: 'E'\n\n  link: (scope, elem, attrs) ->\n\nangular.module('locusControl.directives')\n  .directive('%S', [%S])",
+  \   "template": "#= require ../locus_control_directives\n%S = ->\n  restrict: \"E\"\n\n  link: (scope, elem, attrs) ->\n\nangular.module(\"locusControl.directives\")\n  .directive(\"%S\", [%S])",
   \   "alternate": "spec/javascripts/directives/%s_spec.coffee"
   \ },
   \ "spec/javascripts/directives/*_spec.coffee": {
   \   "command": "adspec",
   \   "alternate": "app/assets/javascripts/directives/%s.js.coffee",
-  \   "template": "#= require directives/%s\ndescribe '%S', ->\n  [$scope, compileDirective] = []\n\n  beforeEach module 'locusControl.directives', ($provide) ->\n    null\n\n  beforeEach inject ($rootScope, $compile) ->\n    $scope = $rootScope.$new()\n\n    compileDirective = ->\n      bind = $compile(\"\"\"\n      <%S></%S>\n      \"\"\")\n      elem = bind($scope)\n      $scope.$digest()\n      elem"
+  \   "template": "#= require directives/%s\ndescribe \"%S\", ->\n  [$scope, compileDirective] = []\n\n  beforeEach module \"locusControl.directives\", ($provide) ->\n    null\n\n  beforeEach inject ($rootScope, $compile) ->\n    $scope = $rootScope.$new()\n\n    compileDirective = ->\n      bind = $compile(\"\"\"\n      <%S></%S>\n      \"\"\")\n      elem = bind($scope)\n      $scope.$digest()\n      elem"
   \ }}
