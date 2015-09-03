@@ -24,3 +24,8 @@ set number
 set mouse+=a
 
 let g:haddock_browser = "/usr/bin/open"
+
+let g:syntastic_scala_checkers = []
+let g:syntastic_java_checkers = []
+
+map <leader>b :!cargo run<CR>

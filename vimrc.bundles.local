@@ -9,3 +9,5 @@ Bundle 'wting/rust.vim'
 Bundle 'godlygeek/tabular'
 Bundle "slim-template/vim-slim"
 Bundle "tikhomirov/vim-glsl"
+Bundle "lambdatoast/elm.vim"
+Bundle "tfnico/vim-gradle"

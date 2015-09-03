@@ -45,7 +45,8 @@ let g:rails_projections = {
   \ },
   \ "spec/javascripts/controllers/*_ctrl_spec.coffee": {
   \   "command": "acspec",
-  \   "alternate": "app/assets/javascripts/controllers/%s_ctrl.js.coffee"
+  \   "alternate": "app/assets/javascripts/controllers/%s_ctrl.js.coffee",
+  \   "template": "#= require controllers/%s_ctrl\ndescribe \"%SCtrl\", ->\n  [$scope, bindController] = []\n\n  beforeEach ->\n    module(\"locusControl.controllers\")\n\n    inject ($rootScope, $controller) ->\n      $scope = $rootScope.$new()\n\n      bindController = (services = {}) ->\n        $controller(\"%SCtrl\", _.defaults(services, $scope: $scope))"
   \ },
   \ "app/assets/javascripts/directives/*.js.coffee": {
   \   "command": "adirective",

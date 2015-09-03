@@ -1,2 +1,4 @@
 export PATH="$HOME/.cabal/bin:/usr/local/bin:$PATH"
-export ANDROID_HOME="/usr/local/Cellar/android-sdk/22.6"
+export ANDROID_HOME="/usr/local/Cellar/android-sdk/24.0.2"
+export NDK_ROOT="/android-ndk"
+export PATH="$PATH:$NDK_ROOT"
