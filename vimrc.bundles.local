@@ -5,9 +5,12 @@ Bundle "rking/ag.vim"
 Bundle "derekwyatt/vim-scala"
 Bundle "lukerandall/haskellmode-vim"
 Bundle "kana/vim-filetype-haskell"
-Bundle 'wting/rust.vim'
+" Bundle 'wting/rust.vim'
 Bundle 'godlygeek/tabular'
 Bundle "slim-template/vim-slim"
 Bundle "tikhomirov/vim-glsl"
 Bundle "lambdatoast/elm.vim"
 Bundle "tfnico/vim-gradle"
+Bundle "cespare/vim-toml"
+Bundle "Chiel92/vim-autoformat"
+Bundle "leafgarland/typescript-vim"

@@ -16,13 +16,15 @@
   up = !git fetch origin && git rebase origin/master
 [core]
   excludesfile = ~/.gitignore
-  autocrlf = input
+  autoclrf = input
 [merge]
   ff = only
+[interactive]
+  singlekey = true
 [include]
   path = .gitconfig.local
 [commit]
   template = ~/.gitmessage
 [user]
   name = Sean Griffin
-  email = sean@thoughtbot.com
+  email = sean@seantheprogrammer.com

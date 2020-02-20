@@ -25,7 +25,11 @@ set mouse+=a
 
 let g:haddock_browser = "/usr/bin/open"
 
-let g:syntastic_scala_checkers = []
-let g:syntastic_java_checkers = []
+" let g:syntastic_scala_checkers = []
+" let g:syntastic_java_checkers = []
 
 map <leader>b :!cargo run<CR>
+
+" let g:formatdef_rustfmt = '"rustfmt"'
+" let g:formatters_rust = ['rustfmt']
+" nmap <Leader>f :Autoformat<CR>

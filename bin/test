@@ -8,7 +8,7 @@ if [ $# -gt 0 ]; then # we have args
   # Remove trailing line numbers from filename, e.g. spec/my_spec.rb:33
   grep_filename=`echo $1 | sed 's/:.*$//g'`
 
-  (set +e; grep -r '\brails_helper\b' $grep_filename) > /dev/null
+  # (set +e; grep -r '\brails_helper\b' $grep_filename) > /dev/null
   if [ $? -eq 1 ]; then # no match; we have a stand-alone spec
     need_rails=''
   fi
@@ -52,7 +52,7 @@ fi
 if [ $jasmine_spec ]; then
   RAILS_ENV=test bundle exec teaspoon $filename
 else if [ $rails_test_case ]; then
-  ruby -Itest $filename
+  bundle exec ruby -I"lib:test" $filename
 else if [ $scala_spec ]; then
   sbt "test-only $scala_class"
 else

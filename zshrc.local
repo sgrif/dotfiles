@@ -2,3 +2,8 @@ export PATH="$HOME/.cabal/bin:/usr/local/bin:$PATH"
 export ANDROID_HOME="/usr/local/Cellar/android-sdk/24.0.2"
 export NDK_ROOT="/android-ndk"
 export PATH="$PATH:$NDK_ROOT"
+
+source ~/.cargo/env
+
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+export PATH="/usr/local/opt/node@10/bin:$PATH"
